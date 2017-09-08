@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+ has_many :articles, dependent: :destroy
  attr_accessor :remember_token
  before_save { self.email = email.downcase }
  validates :name, presence: true, length: { maximum: 50 }
@@ -38,5 +39,8 @@ class User < ActiveRecord::Base
   update_attribute(:remember_digest, nil)
  end
 
-end
+ def feed
+  Article.where("user_id = ?", id)
+ end
 
+end

@@ -4,11 +4,14 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
-   @users = User.paginate(page: params[:page])
+   #@user = User.find(params[:id])
+   #@articles = Article.paginate(page: params[:page])
+   @feed_items = current_user.feed.paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+   # @article = Article.paginate(page: params[:page])
   end
 
   def new

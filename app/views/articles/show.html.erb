@@ -1,0 +1,28 @@
+<div class="container">
+ <div class="row">
+  <div class="col-md-8">
+  
+<h2><%==  @article.title %></h2>
+ <p>
+   <% if @picture.image? %>
+     <div class="thumbnail">
+    <%= image_tag @picture.image.url %>
+   </div>
+   <% end %>
+</p>
+
+   <%==  @article.text %>
+  </div>
+
+  <div class="col-md-4">
+  <h3> 今日のランキング！ <h3>
+ <table class="table table-striped">
+ <tbody><%= render @article %></tbody>
+ </table>
+</div>
+</div>
+</div>
+
+<% if logged_in? %>
+ <li><%= link_to "Edit",edit_article_path(@article) %></li>
+<% end %>

@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
   def home
+   @feed_items = current_user.feed.paginate(page: params[:page])
   end
 
   def help
@@ -7,4 +8,5 @@ class StaticController < ApplicationController
 
   def about
   end
+
 end
